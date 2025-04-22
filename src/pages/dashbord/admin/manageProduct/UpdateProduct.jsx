@@ -7,23 +7,28 @@ import SelectInput from '../addProduct/SelectInput';
 import UploadImage from '../addProduct/UploadImage';
 
 const categories = [
-    { label: 'Select Category', value: '' },
-    { label: 'Accessories', value: 'accessories' },
-    { label: 'Dress', value: 'dress' },
-    { label: 'Jewellery', value: 'jewellery' },
-    { label: 'Cosmetics', value: 'cosmetics' }
+    { label: 'أختر عنصر', value: '' },
+    { label: 'بخور', value: 'بخور' },
+    { label: 'عطور', value: 'عطور' },
+    { label: 'مخمريات', value: 'مخمريات' },
+    { label: 'لوشنات', value: 'لوشنات' },
+    { label: 'معطرات', value: 'معطرات' },
+    { label: 'دهن عود', value: 'دهن_عود' },
+    { label: 'مسك', value: 'مسك' },
+    { label: 'زيوت عطرية', value: 'زيوت_عطرية' },
+    { label: 'كماليات', value: 'كماليات' }
 ];
 
-const colors = [
-    { label: 'Select Color', value: '' },
-    { label: 'Black', value: 'black' },
-    { label: 'Red', value: 'red' },
-    { label: 'Gold', value: 'gold' },
-    { label: 'Blue', value: 'blue' },
-    { label: 'Silver', value: 'silver' },
-    { label: 'Beige', value: 'beige' },
-    { label: 'Green', value: 'green' }
-];
+// const colors = [
+//     { label: 'Select Color', value: '' },
+//     { label: 'Black', value: 'black' },
+//     { label: 'Red', value: 'red' },
+//     { label: 'Gold', value: 'gold' },
+//     { label: 'Blue', value: 'blue' },
+//     { label: 'Silver', value: 'silver' },
+//     { label: 'Beige', value: 'beige' },
+//     { label: 'Green', value: 'green' }
+// ];
 
 
 const UpdateProduct = () => {
@@ -33,7 +38,7 @@ const UpdateProduct = () => {
     const [product, setProduct] = useState({
         name: '',
         category: '',
-        color: '',
+        // color: '',
         price: '',
         description: '',
         image: ''
@@ -43,7 +48,9 @@ const UpdateProduct = () => {
 
     const [newImage, setNewImage] = useState(null)
 
-    const {name, category, color, description, image: imageURL, price } = productData?.product || {};
+    const {name, category,
+        //  color, 
+         description, image: imageURL, price } = productData?.product || {};
 
     const [updateProduct, {isLoading:isUpdating, error: updateError}] = useUpdateProductMutation();
 
@@ -52,7 +59,7 @@ const UpdateProduct = () => {
             setProduct({
                 name: name || '',
                 category: category || '',
-                color: color || '',
+                // color: color || '',
                 price: price || '',
                 description: description || '',
                 image: imageURL || ''
@@ -86,7 +93,7 @@ const UpdateProduct = () => {
 
         try {
             await updateProduct({id: id, ...updatedProduct}).unwrap();
-            alert('Product updated successfully');
+            alert('تم تحديث المنتج بنجاح');
             await refetch();
             navigate("/dashboard/manage-products")
         } catch (error) {
@@ -95,35 +102,35 @@ const UpdateProduct = () => {
 
     }
 
-    if(isProductLoading) return <div>Loading....</div>
+    if(isProductLoading) return <div>تحميل ...</div>
     if(fetchError) return <div>Error fetching product!...</div>
   return (
     <div className='container mx-auto mt-8'>
-        <h2 className='text-2xl font-bold mb-6'>Update Product </h2>
+        <h2 className='text-2xl font-bold mb-6'>تحديث المنتج </h2>
         <form onSubmit={handleSubmit} className='space-y-4'>
                 <TextInput
-                label="Product Name"
+                label="أسم المنتج"
                 name="name"
                 placeholder="Ex: Diamond Earrings"
                 value={product.name}
                 onChange={handleChange}
                 />
                 <SelectInput
-                    label="Category"
+                    label="صنف المنتج"
                     name="category"
                     value={product.category}
                     onChange={handleChange}
                     options={categories}
                 />
-                <SelectInput
+                {/* <SelectInput
                     label="Color"
                     name="color"
                     value={product.color}
                     onChange={handleChange}
                     options={colors}
-                />
+                /> */}
                 <TextInput
-                    label="Price"
+                    label="السعر"
                     name="price"
                     type="number"
                     placeholder="50"
@@ -139,7 +146,7 @@ const UpdateProduct = () => {
                 setImage={handleImageChange}
                 />
                 <div>
-                <label htmlFor="description" className='block text-sm font-medium text-gray-700'>Description</label>
+                <label htmlFor="description" className='block text-sm font-medium text-gray-700'>الوصف</label>
                 <textarea name="description" id="description"
                 className='add-product-InputCSS'
                 value={product.description}

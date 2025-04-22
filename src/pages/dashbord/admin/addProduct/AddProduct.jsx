@@ -8,18 +8,25 @@ import { useNavigate } from 'react-router-dom';
 
 const categories = [
     { label: 'أختر عنصر', value: '' },
-    { label: 'دشداشه', value: 'دشداشه' },
-    { label: 'كمه', value: 'كمه' },
+    { label: 'بخور', value: 'بخور' },
+    { label: 'عطور', value: 'عطور' },
+    { label: 'مخمريات', value: 'مخمريات' },
+    { label: 'لوشنات', value: 'لوشنات' },
+    { label: 'معطرات', value: 'معطرات' },
+    { label: 'دهن عود', value: 'دهن_عود' },
+    { label: 'مسك', value: 'مسك' },
+    { label: 'زيوت عطرية', value: 'زيوت_عطرية' },
+    { label: 'كماليات', value: 'كماليات' }
 ];
 
-const colors = [
-    { label: 'اختر اللون', value: '' },
-    { label: 'أسود', value: 'أسود' },
-    { label: 'أحمر', value: 'أحمر' },
-    { label: 'ذهبي', value: 'ذهبي' },
-    { label: 'أزرق', value: 'أزرق' },
-    { label: 'أخضر', value: 'أخضر' }
-];
+// const colors = [
+//     { label: 'اختر اللون', value: '' },
+//     { label: 'أسود', value: 'أسود' },
+//     { label: 'أحمر', value: 'أحمر' },
+//     { label: 'ذهبي', value: 'ذهبي' },
+//     { label: 'أزرق', value: 'أزرق' },
+//     { label: 'أخضر', value: 'أخضر' }
+// ];
 
 const AddProduct = () => {
     const { user } = useSelector((state) => state.auth);
@@ -27,7 +34,7 @@ const AddProduct = () => {
     const [product, setProduct] = useState({
         name: '',
         category: '',
-        color: '',
+        // color: '',
         price: '',
         description: ''
     });
@@ -46,18 +53,18 @@ const AddProduct = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!product.name || !product.category || !product.price || !product.description || !product.color || image.length === 0) {
-            alert('Please fill all the required fields');
+        if (!product.name || !product.category || !product.price || !product.description ||  image.length === 0) {
+            alert('أملأ كل الحقول');
             return;
         }
 
         try {
             await AddProduct({ ...product, image, author: user?._id }).unwrap();
-            alert('Product added successfully');
+            alert('تمت أضافة المنتج بنجاح');
             setProduct({
                 name: '',
                 category: '',
-                color: '',
+                // color: '',
                 price: '',
                 description: ''
             });
@@ -70,31 +77,31 @@ const AddProduct = () => {
 
     return (
         <div className="container mx-auto mt-8">
-            <h2 className="text-2xl font-bold mb-6">Add New Product</h2>
+            <h2 className="text-2xl font-bold mb-6">أضافة منتج جديد</h2>
             <form onSubmit={handleSubmit} className="space-y-4">
                 <TextInput
-                    label="Product Name"
+                    label="أسم المنتج"
                     name="name"
-                    placeholder="Ex: Diamond Earrings"
+                    placeholder="أكتب أسم المنتج"
                     value={product.name}
                     onChange={handleChange}
                 />
                 <SelectInput
-                    label="Category"
+                    label="صنف المنتج"
                     name="category"
                     value={product.category}
                     onChange={handleChange}
                     options={categories}
                 />
-                <SelectInput
+                {/* <SelectInput
                     label="Color"
                     name="color"
                     value={product.color}
                     onChange={handleChange}
                     options={colors}
-                />
+                /> */}
                 <TextInput
-                    label="Price"
+                    label="السعر"
                     name="price"
                     type="number"
                     placeholder="50"
@@ -107,7 +114,7 @@ const AddProduct = () => {
                     setImage={setImage}
                 />
                 <div>
-                    <label htmlFor="description" className='block text-sm font-medium text-gray-700'>Description</label>
+                    <label htmlFor="description" className='block text-sm font-medium text-gray-700'>وصف المنتج</label>
                     <textarea
                         name="description"
                         id="description"
@@ -119,7 +126,7 @@ const AddProduct = () => {
                 </div>
                 <div>
                     <button type='submit' className='add-product-btn' disabled={isLoading}>
-                        {isLoading ? "جاري الإضافة..." : "Add Product"}
+                        {isLoading ? "جاري الإضافة..." : "أضف منتج"}
                     </button>
                 </div>
             </form>

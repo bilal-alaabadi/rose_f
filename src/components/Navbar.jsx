@@ -28,8 +28,8 @@ const Navbar = () => {
     // Admin dropdown menus
     const adminDropDownMenus = [
         { label: "لوحة التحكم", path: "/dashboard/admin" },
-        { label: "إدارة العناصر", path: "/dashboard/manage-products" },
-        { label: "جميع الطلبات", path: "/dashboard/manage-orders" },
+        { label: "تعديل المنتج", path: "/dashboard/manage-products" },
+        // { label: "جميع الطلبات", path: "/dashboard/manage-orders" },
         { label: "إضافة منتج", path: "/dashboard/add-product" },
     ];
 
@@ -72,7 +72,7 @@ const Navbar = () => {
                         </Link>
                     </li>
                     <li>
-                        <Link to="" className='text-sm sm:text-base md:text-lg hover:text-primary transition-colors duration-300'>
+                        <Link to="/shop" className='text-sm sm:text-base md:text-lg hover:text-primary transition-colors duration-300'>
                             المتجر
                         </Link>
                     </li>

@@ -111,7 +111,7 @@ const SingleProduct = () => {
                         {/* معلومات إضافية عن المنتج */}
                         <div className='flex flex-col space-y-2'>
                             <p><strong>الفئة:</strong> {singleProduct.category}</p>
-                            <p><strong>اللون:</strong> {singleProduct.color}</p>
+                            {/* <p><strong>اللون:</strong> {singleProduct.color}</p> */}
                             <div className='flex gap-1 items-center'>
                                 <strong>التقييم: </strong>
                                 <RatingStars rating={singleProduct.rating} />

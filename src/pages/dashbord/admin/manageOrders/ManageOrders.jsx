@@ -60,15 +60,14 @@ const ManageOrders = () => {
 
     return (
         <div className='section__container p-6'>
-            <h2 className='text-2xl font-semibold mb-4'>Manage Orders</h2>
+            <h2 className='text-2xl font-semibold mb-4'>أدارة الطلبيات</h2>
             <table className='min-w-full bg-white border border-gray-200 rounded-lg'>
                 <thead className='bg-gray-100'>
                     <tr>
-                        <th className='py-3 px-4 border-b'>Order Id</th>
-                        <th className='py-3 px-4 border-b'>Customer</th>
-                        <th className='py-3 px-4 border-b'>Status</th>
-                        <th className='py-3 px-4 border-b'>Date</th>
-                        <th className='py-3 px-4 border-b'>Actions</th>
+                        <th className='py-3 px-4 border-b'>العميل</th>
+                        <th className='py-3 px-4 border-b'>الحالة</th>
+                        <th className='py-3 px-4 border-b'>التاريخ</th>
+                        <th className='py-3 px-4 border-b'>الإجراءات</th>
                     </tr>
                 </thead>
 
@@ -76,7 +75,6 @@ const ManageOrders = () => {
                     {orders &&
                         orders.map((order, index) => (
                             <tr key={index}>
-                                <td className='py-3 px-4 border-b'>{order?.orderId}</td>
                                 <td className='py-3 px-4 border-b'>{order?.email}</td>
                                 <td className='py-3 px-4 border-b'>
                                     <span
@@ -93,19 +91,19 @@ const ManageOrders = () => {
                                         className="text-blue-500 hover:underline"
                                         onClick={() => handleViewOrder(order)} // عرض تفاصيل الطلب
                                     >
-                                        View
+                                        مشاهدة
                                     </button>
                                     <button
                                         className="text-green-500 hover:underline"
                                         onClick={() => handleEditOrder(order)}
                                     >
-                                        Edit
+                                        تعديل
                                     </button>
                                     <button
                                         className="text-red-500 hover:underline"
                                         onClick={() => handleDeleteOder(order?._id)}
                                     >
-                                        Delete
+                                        حذف
                                     </button>
                                 </td>
                             </tr>
@@ -174,19 +172,19 @@ const ManageOrders = () => {
                                 className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
                                 onClick={handleCloseViewModal}
                             >
-                                Close
+                                أغلاق
                             </button>
                             <button
                                 className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600"
                                 onClick={handlePrintOrder}
                             >
-                                Print
+                                طباعة
                             </button>
                             <button
                                 className="bg-purple-500 text-white px-4 py-2 rounded-md hover:bg-purple-600"
                                 onClick={handleDownloadPDF}
                             >
-                                Download PDF
+                                تحميل 
                             </button>
                         </div>
                     </div>
