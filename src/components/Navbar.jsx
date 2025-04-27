@@ -76,11 +76,11 @@ const Navbar = () => {
                             المتجر
                         </Link>
                     </li>
-                    <li>
+                    {/* <li>
                         <Link to="" className='text-sm sm:text-base md:text-lg hover:text-primary transition-colors duration-300'>
                             الصفحات
                         </Link>
-                    </li>
+                    </li> */}
 
                 </ul>
 
