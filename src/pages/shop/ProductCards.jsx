@@ -52,7 +52,7 @@ const ProductCards = ({ products }) => {
                                 <s className="text-gray-500 ml-2">ر.ع{product?.oldPrice}</s>
                             )}
                         </p>
-                        <RatingStars rating={product.rating} />
+                        {/* <RatingStars rating={product.rating} /> */}
                     </div>
                 </div>
             ))}

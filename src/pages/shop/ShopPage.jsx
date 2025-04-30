@@ -52,7 +52,7 @@ const ShopPage = () => {
         <>
             <section className='section__container bg-[#eff6ff]'>
                 <h2 className='section__header capitalize'>صفحة المتجر</h2>
-                <p className='section__subheader'>اكتشف أحدث الاختيارات: رفع مستوى أناقتك مع مجموعتنا المختارة من منتجات الموضة الرجالية الأكثر رواجًا.</p>
+                <p className='section__subheader'> Pink Heart لحظاتك الغالية.. تستحق منتجات </p>
             </section>
 
             <section className='section__container'>

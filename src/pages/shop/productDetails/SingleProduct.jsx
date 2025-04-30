@@ -113,8 +113,8 @@ const SingleProduct = () => {
                             <p><strong>الفئة:</strong> {singleProduct.category}</p>
                             {/* <p><strong>اللون:</strong> {singleProduct.color}</p> */}
                             <div className='flex gap-1 items-center'>
-                                <strong>التقييم: </strong>
-                                <RatingStars rating={singleProduct.rating} />
+                                {/* <strong>التقييم: </strong> */}
+                                {/* <RatingStars rating={singleProduct.rating} /> */}
                             </div>
                         </div>
 

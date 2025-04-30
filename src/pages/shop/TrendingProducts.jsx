@@ -31,10 +31,10 @@ const TrendingProducts = () => {
     return (
         <section className="section__container product__container" >
             <h2 className="section__header text-3xl font-bold text-gray-800 mb-4">
-                المنتجات الجديده
+            احدث المنتجات
             </h2>
             <p className="section__subheader text-lg text-gray-600 mb-12" dir='rtl'>
-                اكتشف أحدث الصيحات: رفع مستوى أناقتك مع مجموعتنا المختارة من منتجات موضة الرجاليه الرائجة.
+            نُبدع بخوراً وعطوراً عُمانيه  تحمل لمسة فخامة وأناقة لكل روح راقية.
             </p>
 
             {/* Product Cards */}
@@ -67,7 +67,7 @@ const TrendingProducts = () => {
                                         <s className="text-gray-500 ml-2">ر.ع{product.oldPrice}ر.ع</s>
                                     )}
                                 </p>
-                                <RatingStars rating={product.rating} />
+                                {/* <RatingStars rating={product.rating} /> */}
                             </div>
                         </div>
                     ))}
