@@ -5,7 +5,7 @@ import CartModal from '../pages/shop/CartModal';
 import avatarImg from "../assets/avatar.png";
 import { useLogoutUserMutation } from '../redux/features/auth/authApi';
 import { logout } from '../redux/features/auth/authSlice';
-import log from "../assets/Black_White_Modern_Monogram_Initial_Name_Logo-removebg-preview.png"
+import log from "../assets/ChatGPT_Image_May_5__2025__09_35_03_AM-removebg-preview.png"
 const Navbar = () => {
     const products = useSelector((state) => state.cart.products);
     const [isCartOpen, setIsCartOpen] = useState(false);
@@ -54,7 +54,7 @@ const Navbar = () => {
     };
 
     return (
-        <header className='fixed-nav-bar w-full bg-white '>
+        <header className='fixed-nav-bar w-full bg-white  pb-10 pt-3'>
             <nav className='max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center relative'>
                 {/* Mobile Menu Button (Hamburger Icon) */}
                 <button
@@ -85,16 +85,16 @@ const Navbar = () => {
                 </ul>
 
                 {/* Logo (Centered) */}
-                <div className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center h-20"> {/* زيادة الارتفاع */}
+                <div className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center h-20 "> {/* زيادة الارتفاع */}
                  {/* إضافة فئات الخط هنا */}
-                <Link to="/" className="inline-block">
-                {/* <img 
+                <Link to="/" className="inline-block ">
+                <img 
                     src={log} 
                     alt="شعار رؤية" 
                     className="w-48 h-56 pt-6"  
                     loading="lazy" 
-                /> */}
-                <div>pinkheart</div>
+                />
+                <div></div>
                 </Link>
             </div>
 
@@ -164,11 +164,7 @@ const Navbar = () => {
                                     المتجر
                                 </Link>
                             </li>
-                            <li>
-                                <Link to="/" className='block text-sm hover:text-primary transition-colors duration-300'>
-                                    الصفحات
-                                </Link>
-                            </li>
+
 
                         </ul>
                     </div>

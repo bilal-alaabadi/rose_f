@@ -49,7 +49,7 @@ const SingleProduct = () => {
 
     return (
         <>
-            <section className='section__container bg-[#eff6ff]'>
+            <section className='section__container bg-[#f8d7d0]'>
                 <h2 className='section__header capitalize'>صفحة المنتج الفردي</h2>
                 <div className='section__subheader space-x-2'>
                     <span className='hover:text-primary'><Link to="/">الرئيسية</Link></span>

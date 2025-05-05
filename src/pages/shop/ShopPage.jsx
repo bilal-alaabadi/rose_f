@@ -50,7 +50,7 @@ const ShopPage = () => {
 
     return (
         <>
-            <section className='section__container bg-[#eff6ff]'>
+            <section className='section__container bg-[#f8d7d0]'>
                 <h2 className='section__header capitalize'>صفحة المتجر</h2>
                 <p className='section__subheader'> Pink Heart لحظاتك الغالية.. تستحق منتجات </p>
             </section>
