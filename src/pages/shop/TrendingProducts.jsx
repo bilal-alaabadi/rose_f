@@ -31,11 +31,11 @@ const TrendingProducts = () => {
     return (
         <section className="section__container product__container" >
             <h2 className="section__header text-3xl font-bold text-gray-800 mb-4">
-            احدث المنتجات
+            أحدث المنتجات
             </h2>
-            <p className="section__subheader text-lg text-gray-600 mb-12" dir='rtl'>
-            نُبدع بخوراً وعطوراً عُمانيه  تحمل لمسة فخامة وأناقة لكل روح راقية.
-            </p>
+<p className="section__subheader text-lg text-gray-900 mb-12" dir='rtl'>
+    نقدم لكِ أحدث صيحات المكياج العالمية بجودة فائقة لتبرزي جمالكِ الطبيعي بلمسات ساحرة.
+</p>
 
             {/* Product Cards */}
             <div className="mt-12" dir='rtl'>

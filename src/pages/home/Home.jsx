@@ -4,11 +4,13 @@ import Banner from './Banner'
 import TrendingProducts from '../shop/TrendingProducts'
 // import DealsSection from './DealsSection'
 import PromoBanner from './PromoBanner'
+import HeroSection from './HeroSection'
 
 const Home = () => {
   return (
     <>
     <Banner/>
+    <HeroSection />
     <TrendingProducts/>
     </>
   )

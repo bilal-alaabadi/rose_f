@@ -43,7 +43,7 @@ const CartModal = ({ products, isOpen, onClose }) => {
         products.map((item, index) => (
             <div key={index} className='flex flex-col md:flex-row md:items-center md:justify-between shadow-md md:p-5 p-2 mb-4'>
                 <div className='flex items-center'>
-                    <span className='mr-4 px-1 bg-primary text-white rounded-full'>0{index + 1}</span>
+                    <span className='mr-4 px-1 bg-pink-600 text-white rounded-full'>0{index + 1}</span>
                     {/* عرض الصورة الأولى فقط */}
                     <img 
                         src={Array.isArray(item.image) ? item.image[0] : item.image} 

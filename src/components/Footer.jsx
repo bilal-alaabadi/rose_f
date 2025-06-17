@@ -34,10 +34,10 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-bold text-gray-800 mb-4">وسائل التواصل</h4>
             <div className="flex justify-center md:justify-end gap-4">
-              <a href="https://www.instagram.com/pinkheart_369/" className="text-gray-600 hover:hover:text-[#d3ae27]  transition">
+              <a href="https://www.instagram.com/gloosypicks_om?igsh=MWlmN2Q3eHgzYmZsOQ%3D%3D&utm_source=qr" className="text-gray-600 hover:hover:text-[#d3ae27]  transition">
                 <FaInstagram className="text-xl" />
               </a>
-              <a href="https://api.whatsapp.com/send/?phone=96891159700&text&type=phone_number&app_absent=0" className="text-gray-600 hover:text-[#d3ae27]  transition">
+              <a href="https://api.whatsapp.com/send/?phone=96876904013&text&type=phone_number&app_absent=0" className="text-gray-600 hover:text-[#d3ae27]  transition">
                 <FaWhatsapp className="text-xl" />
               </a>
             </div>

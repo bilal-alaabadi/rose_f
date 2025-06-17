@@ -36,7 +36,7 @@ const ProductCards = ({ products }) => {
                                     e.stopPropagation();
                                     handleAddToCart(product);
                                 }}
-                                className="bg-primary p-1.5 text-white hover:bg-primary-dark rounded-full"
+                                className="bg-pink-500 p-1.5 text-white hover:bg-pink-600  rounded-full"
                             >
                                 <i className="ri-shopping-cart-2-line"></i>
                             </button>

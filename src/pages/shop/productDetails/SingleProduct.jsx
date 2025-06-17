@@ -123,7 +123,7 @@ const SingleProduct = () => {
                                 e.stopPropagation();
                                 handleAddToCart(singleProduct);
                             }}
-                            className='mt-6 px-6 py-3 bg-primary text-white rounded-md'
+                            className='mt-6 px-6 py-3 bg-pink-500 text-white rounded-md'
                         >
                             إضافة إلى السلة
                         </button>

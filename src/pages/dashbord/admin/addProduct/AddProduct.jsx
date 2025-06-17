@@ -1,47 +1,80 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import TextInput from './TextInput';
-import SelectInput from './SelectInput';
 import UploadImage from './UploadImage';
 import { useAddProductMutation } from '../../../../redux/features/products/productsApi';
 import { useNavigate } from 'react-router-dom';
 
-const categories = [
-    { label: 'أختر عنصر', value: '' },
-    { label: 'بخور', value: 'بخور' },
-    { label: 'عطور', value: 'عطور' },
-    { label: 'مخمريات', value: 'مخمريات' },
-    { label: 'لوشنات', value: 'لوشنات' },
-    { label: 'معطرات', value: 'معطرات' },
-    { label: 'دهن عود', value: 'دهن_عود' },
-    { label: 'مسك', value: 'مسك' },
-    { label: 'زيوت عطرية', value: 'زيوت_عطرية' },
-    { label: 'كماليات', value: 'كماليات' }
+const categoryStructure = [
+  {
+    mainCategory: 'العناية بالبشرة',
+    subCategories: ['العناية الكورية', 'أدوات العناية', 'منتجات العناية']
+  },
+  {
+    mainCategory: 'المكياج',
+    subCategories: [
+      'أساس الوجه', 'أحمر خدود', 'باليتات', 'العيون', 'الشفاه', 
+      'ملمعات شفاه', 'الحواجب', 'الأظافر', 'فرش المكياج'
+    ]
+  },
+  {
+    mainCategory: 'العطور',
+    subCategories: ['عطور']
+  },
+  {
+    mainCategory: 'الجسم',
+    subCategories: ['كريمات جسم']
+  },
+  {
+    mainCategory: 'مثبتات',
+    subCategories: ['مثبتات']
+  },
+  {
+    mainCategory: 'مجموعات',
+    subCategories: ['مجموعات']
+  },
+  {
+    mainCategory: 'منتجات أخرى',
+    subCategories: ['منتجات أخرى']
+  },
+  {
+    mainCategory: 'خصومات',
+    subCategories: ['خصومات']
+  }
 ];
-
-// const colors = [
-//     { label: 'اختر اللون', value: '' },
-//     { label: 'أسود', value: 'أسود' },
-//     { label: 'أحمر', value: 'أحمر' },
-//     { label: 'ذهبي', value: 'ذهبي' },
-//     { label: 'أزرق', value: 'أزرق' },
-//     { label: 'أخضر', value: 'أخضر' }
-// ];
 
 const AddProduct = () => {
     const { user } = useSelector((state) => state.auth);
-
+    const [selectedMainCategory, setSelectedMainCategory] = useState('');
     const [product, setProduct] = useState({
         name: '',
-        category: '',
-        // color: '',
+        category: '', // الفئة الرئيسية
+        subCategory: '', // الفئة الفرعية
         price: '',
         description: ''
     });
-    const [image, setImage] = useState([]); // مصفوفة لحفظ روابط الصور
+    const [images, setImages] = useState([]);
+    const [errorMessage, setErrorMessage] = useState('');
 
-    const [AddProduct, { isLoading, error }] = useAddProductMutation();
+    const [AddProduct, { isLoading }] = useAddProductMutation();
     const navigate = useNavigate();
+
+    const handleMainCategoryChange = (e) => {
+        const mainCategory = e.target.value;
+        setSelectedMainCategory(mainCategory);
+        setProduct({
+            ...product,
+            category: mainCategory,
+            subCategory: ''
+        });
+    };
+
+    const handleSubCategoryChange = (e) => {
+        setProduct({
+            ...product,
+            subCategory: e.target.value
+        });
+    };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -53,80 +86,160 @@ const AddProduct = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!product.name || !product.category || !product.price || !product.description ||  image.length === 0) {
-            alert('أملأ كل الحقول');
+        setErrorMessage('');
+
+        // التحقق من الحقول المطلوبة
+        if (!product.name || !product.category || !product.subCategory || !product.price || !product.description || images.length === 0) {
+            setErrorMessage('الرجاء ملء جميع الحقول المطلوبة');
+            return;
+        }
+
+        // التحقق من أن السعر رقم موجب
+        if (isNaN(product.price) || parseFloat(product.price) <= 0) {
+            setErrorMessage('السعر يجب أن يكون رقمًا موجبًا');
             return;
         }
 
         try {
-            await AddProduct({ ...product, image, author: user?._id }).unwrap();
-            alert('تمت أضافة المنتج بنجاح');
-            setProduct({
-                name: '',
-                category: '',
-                // color: '',
-                price: '',
-                description: ''
-            });
-            setImage([]);
-            navigate("/shop");
+            const productData = {
+                name: product.name,
+                category: product.category,
+                subCategory: product.subCategory,
+                price: parseFloat(product.price),
+                description: product.description,
+                image: images,
+                author: user?._id
+            };
+
+            const response = await AddProduct(productData).unwrap();
+            
+            if (response) {
+                alert('تمت إضافة المنتج بنجاح');
+                setProduct({
+                    name: '',
+                    category: '',
+                    subCategory: '',
+                    price: '',
+                    description: ''
+                });
+                setImages([]);
+                setSelectedMainCategory('');
+                navigate("/shop");
+            }
         } catch (error) {
-            console.log("Failed to submit product", error);
+            console.error("فشل في إضافة المنتج", error);
+            setErrorMessage(error.data?.message || 'حدث خطأ أثناء إضافة المنتج');
         }
     };
 
+    const getCurrentSubCategories = () => {
+        if (!selectedMainCategory) return [];
+        const category = categoryStructure.find(cat => cat.mainCategory === selectedMainCategory);
+        return category ? category.subCategories : [];
+    };
+
     return (
-        <div className="container mx-auto mt-8">
-            <h2 className="text-2xl font-bold mb-6">أضافة منتج جديد</h2>
+        <div className="container mx-auto mt-8 p-4 max-w-2xl">
+            <h2 className="text-2xl font-bold mb-6 text-right">إضافة منتج جديد</h2>
+            {errorMessage && (
+                <div className="mb-4 p-3 bg-red-100 text-red-700 rounded text-right">
+                    {errorMessage}
+                </div>
+            )}
             <form onSubmit={handleSubmit} className="space-y-4">
                 <TextInput
-                    label="أسم المنتج"
+                    label="اسم المنتج"
                     name="name"
-                    placeholder="أكتب أسم المنتج"
+                    placeholder="أدخل اسم المنتج"
                     value={product.name}
                     onChange={handleChange}
+                    required
                 />
-                <SelectInput
-                    label="صنف المنتج"
-                    name="category"
-                    value={product.category}
-                    onChange={handleChange}
-                    options={categories}
-                />
-                {/* <SelectInput
-                    label="Color"
-                    name="color"
-                    value={product.color}
-                    onChange={handleChange}
-                    options={colors}
-                /> */}
+                
+                <div className="space-y-2">
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 text-right mb-1">
+                            الفئة الرئيسية
+                        </label>
+                        <select
+                            value={selectedMainCategory}
+                            onChange={handleMainCategoryChange}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-right"
+                            required
+                        >
+                            <option value="">اختر الفئة الرئيسية</option>
+                            {categoryStructure.map((category, index) => (
+                                <option key={index} value={category.mainCategory}>
+                                    {category.mainCategory}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+
+                    {selectedMainCategory && (
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 text-right mb-1">
+                                الفئة الفرعية
+                            </label>
+                            <select
+                                value={product.subCategory}
+                                onChange={handleSubCategoryChange}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-right"
+                                required
+                            >
+                                <option value="">اختر الفئة الفرعية</option>
+                                {getCurrentSubCategories().map((subCat, idx) => (
+                                    <option key={idx} value={subCat}>
+                                        {subCat}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                    )}
+                </div>
+
                 <TextInput
-                    label="السعر"
+                    label="السعر (ريال)"
                     name="price"
                     type="number"
                     placeholder="50"
                     value={product.price}
                     onChange={handleChange}
+                    min="0.01"
+                    step="0.01"
+                    required
                 />
+                
                 <UploadImage
                     name="image"
                     id="image"
-                    setImage={setImage}
+                    setImage={setImages}
+                    required
                 />
+                
                 <div>
-                    <label htmlFor="description" className='block text-sm font-medium text-gray-700'>وصف المنتج</label>
+                    <label htmlFor="description" className='block text-sm font-medium text-gray-700 text-right'>
+                        وصف المنتج
+                    </label>
                     <textarea
                         name="description"
                         id="description"
-                        className='add-product-InputCSS'
+                        className='w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-right'
+                        rows="5"
                         value={product.description}
-                        placeholder='Write a product description'
+                        placeholder='أدخل وصفًا تفصيليًا للمنتج'
                         onChange={handleChange}
+                        required
                     ></textarea>
                 </div>
-                <div>
-                    <button type='submit' className='add-product-btn' disabled={isLoading}>
-                        {isLoading ? "جاري الإضافة..." : "أضف منتج"}
+                
+                <div className="flex justify-end">
+                    <button 
+                        type='submit' 
+                        className='px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
+                        disabled={isLoading}
+                    >
+                        {isLoading ? "جاري الإضافة..." : "إضافة المنتج"}
                     </button>
                 </div>
             </form>
