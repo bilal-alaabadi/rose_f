@@ -77,12 +77,12 @@ const TrendingProducts = () => {
             {/* Load More Products Button */}
             <div className="product__btn text-center mt-8" dir='rtl'>
                 {visibleProducts < products.length && (
-                    <button className="btn bg-primary text-white px-6 py-2 rounded-md" onClick={loadMoreProducts}>
+                    <button className=" bg-pink-500 text-white px-6  hover:bg-pink-600 py-2 rounded-md" onClick={loadMoreProducts}>
                         عرض المزيد
                     </button>
                 )}
             </div>
-        </section>
+        </section> 
     );
 };
 
