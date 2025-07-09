@@ -10,14 +10,14 @@ import img7 from "../../assets/view-circular-arrangement-with-make-up-flowers.jp
 import img8 from "../../assets/composition-with-colorful-cosmetics-white-background.jpg";
 
 const cards = [
-    { id: 1, image: img1, trend: '', title: 'العناية بالبشرة', mainCategory: 'العناية بالبشرة' },
-    { id: 2, image: img2, trend: '', title: 'المكياج', mainCategory: 'المكياج' },
-    { id: 3, image: img3, trend: '', title: 'العطور', mainCategory: 'العطور' },
-    { id: 4, image: img4, trend: '', title: 'الجسم', mainCategory: 'الجسم' },
-    { id: 5, image: img5, trend: '', title: 'مثبتات', mainCategory: 'مثبتات' },
-    { id: 6, image: img6, trend: '', title: 'مجموعات', mainCategory: 'مجموعات' },
-    { id: 7, image: img7, trend: '', title: 'خصومات', mainCategory: 'خصومات' },
-    { id: 8, image: img8, trend: '', title: 'منتجات أخرى', mainCategory: 'منتجات أخرى' },
+    { id: 1, image: img1, trend: '', title: "منتجات عناية", mainCategory: "منتجات عناية" },
+    { id: 2, image: img2, trend: '', title: "مكياج نباتي", mainCategory: "مكياج نباتي" },
+    { id: 3, image: img3, trend: '', title: "عطور", mainCategory: "عطور" },
+    { id: 4, image: img4, trend: '', title: "أجهزة", mainCategory: "أجهزة" },
+    { id: 5, image: img5, trend: '', title: "أدوات صحيه", mainCategory: "أدوات صحيه" },
+    { id: 6, image: img6, trend: '', title: "توزيعات", mainCategory: "توزيعات" },
+    { id: 7, image: img7, trend: '', title: "ملابس", mainCategory: "ملابس" },
+    { id: 8, image: img8, trend: '', title: "خصومات٪", mainCategory: "خصومات٪" },
 ];
 
 const HeroSection = () => {

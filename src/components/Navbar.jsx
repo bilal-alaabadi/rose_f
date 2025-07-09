@@ -5,7 +5,7 @@ import CartModal from '../pages/shop/CartModal';
 import avatarImg from "../assets/avatar.png";
 import { useLogoutUserMutation } from '../redux/features/auth/authApi';
 import { logout } from '../redux/features/auth/authSlice';
-import log from "../assets/ChatGPT_Image_Jun_4__2025__01_38_56_AM-removebg-preview.png"
+import log from "../assets/ChatGPT_Image_Jul_7__2025__11_12_01_PM-removebg-preview.png"
 const Navbar = () => {
     const products = useSelector((state) => state.cart.products);
     const [isCartOpen, setIsCartOpen] = useState(false);
@@ -54,7 +54,7 @@ const Navbar = () => {
     };
 
     return (
-        <header className='fixed-nav-bar w-full bg-white  pb-14 pt-10'>
+        <header className='fixed-nav-bar w-full bg-white  pb-20 pt-8'>
             <nav className='max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center relative'>
                 {/* Mobile Menu Button (Hamburger Icon) */}
                 <button

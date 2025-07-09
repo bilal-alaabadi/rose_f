@@ -7,39 +7,69 @@ import { useNavigate } from 'react-router-dom';
 
 const categoryStructure = [
   {
-    mainCategory: 'العناية بالبشرة',
-    subCategories: ['العناية الكورية', 'أدوات العناية', 'منتجات العناية']
-  },
-  {
-    mainCategory: 'المكياج',
+    mainCategory: "منتجات عناية",
     subCategories: [
-      'أساس الوجه', 'أحمر خدود', 'باليتات', 'العيون', 'الشفاه', 
-      'ملمعات شفاه', 'الحواجب', 'الأظافر', 'فرش المكياج'
+      "عناية القدمين (بدكير)",
+      "عناية بالجسم (صابونيات)",
+      "أدوات عناية",
+      "ماسكات بشره",
+      "غسول فم"
     ]
   },
   {
-    mainCategory: 'العطور',
-    subCategories: ['عطور']
+    mainCategory: "مكياج نباتي",
+    subCategories: [
+      "الوجه",
+      "العيون",
+      "الشفاه",
+      "ملمع شفايف",
+      "أحمر خدود",
+      "باليتات",
+      "فرش المكياج",
+      "مزيل مكياج",
+      "آخر"
+    ]
   },
   {
-    mainCategory: 'الجسم',
-    subCategories: ['كريمات جسم']
+    mainCategory: "عطور",
+    subCategories: [
+      "عطور للملابس",
+      "عطور الشعر",
+      "عطور مفارش",
+      "فواحات عطريه",
+      "آخر"
+    ]
   },
   {
-    mainCategory: 'مثبتات',
-    subCategories: ['مثبتات']
+    mainCategory: "أجهزة",
+    subCategories: [
+      "أستشوار جوي",
+      "اجهزه"
+    ]
   },
   {
-    mainCategory: 'مجموعات',
-    subCategories: ['مجموعات']
+    mainCategory: "أدوات صحيه",
+    subCategories: [
+      "مستلزمات"
+    ]
   },
   {
-    mainCategory: 'منتجات أخرى',
-    subCategories: ['منتجات أخرى']
+    mainCategory: "توزيعات",
+    subCategories: [
+      "توزيعات بأقل سعر"
+    ]
   },
   {
-    mainCategory: 'خصومات',
-    subCategories: ['خصومات']
+    mainCategory: "ملابس",
+    subCategories: [
+      "مخاوير"
+    ]
+  },
+  {
+    mainCategory: "خصومات٪",
+    subCategories: [
+      "جميع الخصومات"
+    ]
   }
 ];
 

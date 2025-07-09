@@ -34,10 +34,10 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-bold text-gray-800 mb-4">وسائل التواصل</h4>
             <div className="flex justify-center md:justify-end gap-4">
-              <a href="https://www.instagram.com/gloosypicks_om?igsh=MWlmN2Q3eHgzYmZsOQ%3D%3D&utm_source=qr" className="text-gray-600 hover:hover:text-[#d3ae27]  transition">
+              <a href="https://www.instagram.com/rose_brand121/reels/" className="text-gray-600 hover:hover:text-[#d3ae27]  transition">
                 <FaInstagram className="text-xl" />
               </a>
-              <a href="https://api.whatsapp.com/send/?phone=96876904013&text&type=phone_number&app_absent=0" className="text-gray-600 hover:text-[#d3ae27]  transition">
+              <a href="https://api.whatsapp.com/send/?phone=96892693710&text&type=phone_number&app_absent=0" className="text-gray-600 hover:text-[#d3ae27]  transition">
                 <FaWhatsapp className="text-xl" />
               </a>
             </div>
@@ -49,10 +49,10 @@ const Footer = () => {
   <p className="leading-relaxed">
     تم التطوير بواسطة  
     <a
-      href="https://www.instagram.com/roya_sow/"
+      href="https://www.mobadeer.com/?fbclid=PAZXh0bgNhZW0CMTEAAacJqYTBWdPsNeqdFZshGrtw1Ru3SXNohnaMfBAx9ysPDF5wgs0ZCJevJWdA3A_aem_wdO-JZOLhQwV91cRb_FDhg````````````````````````````````````````````````````````````````````````````````````````````````````````````"
       className="hover:text-[#d3ae27]  font-semibold hover:underline mx-1"
     >
-      شركة رؤية
+      شركة مُبادر
     </a>
     بجودة واحترافية
   </p>

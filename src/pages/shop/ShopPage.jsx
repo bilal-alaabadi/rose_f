@@ -39,57 +39,71 @@ const ShopPage = () => {
     });
 
     const categoryStructure = [
-        {
-            mainCategory: 'كل المنتجات',
-            subCategories: []
-        },
-        {
-            mainCategory: 'العناية بالبشرة',
-            subCategories: [
-                'العناية الكورية',
-                'أدوات العناية',
-                'منتجات العناية'
-            ]
-        },
-        {
-            mainCategory: 'المكياج',
-            subCategories: [
-                'أساس الوجه',
-                'أحمر خدود',
-                'باليتات',
-                'العيون',
-                'الشفاه',
-                'ملمعات شفاه',
-                'الحواجب',
-                'الأظافر',
-                'فرش المكياج'
-            ]
-        },
-        {
-            mainCategory: 'العطور',
-            subCategories: ['عطور']
-        },
-        {
-            mainCategory: 'الجسم',
-            subCategories: ['كريمات جسم']
-        },
-        {
-            mainCategory: 'مثبتات',
-            subCategories: ['مثبتات']
-        },
-        {
-            mainCategory: 'مجموعات',
-            subCategories: ['مجموعات']
-        },
-        {
-            mainCategory: 'منتجات أخرى',
-            subCategories: ['منتجات أخرى']
-        },
-        {
-            mainCategory: 'خصومات',
-            subCategories: ['خصومات']
-        }
-    ];
+         {
+    mainCategory: "منتجات عناية",
+    subCategories: [
+      "عناية القدمين (بدكير)",
+      "عناية بالجسم (صابونيات)",
+      "أدوات عناية",
+      "ماسكات بشره",
+      "غسول فم"
+    ]
+  },
+  {
+    mainCategory: "مكياج نباتي",
+    subCategories: [
+      "الوجه",
+      "العيون",
+      "الشفاه",
+      "ملمع شفايف",
+      "أحمر خدود",
+      "باليتات",
+      "فرش المكياج",
+      "مزيل مكياج",
+      "آخر"
+    ]
+  },
+  {
+    mainCategory: "عطور",
+    subCategories: [
+      "عطور للملابس",
+      "عطور الشعر",
+      "عطور مفارش",
+      "فواحات عطريه",
+      "آخر"
+    ]
+  },
+  {
+    mainCategory: "أجهزة",
+    subCategories: [
+      "أستشوار جوي",
+      "اجهزه"
+    ]
+  },
+  {
+    mainCategory: "أدوات صحيه",
+    subCategories: [
+      "مستلزمات"
+    ]
+  },
+  {
+    mainCategory: "توزيعات",
+    subCategories: [
+      "توزيعات بأقل سعر"
+    ]
+  },
+  {
+    mainCategory: "ملابس",
+    subCategories: [
+      "مخاوير"
+    ]
+  },
+  {
+    mainCategory: "خصومات٪",
+    subCategories: [
+      "جميع الخصومات"
+    ]
+  }];
 
     const toggleCategory = (mainCategory) => {
         setExpandedCategories(prev => 
@@ -151,7 +165,7 @@ const ShopPage = () => {
                 </div>
             </section>
 
-            <section className='section__container py-6 md:py-12 pb-10'>
+            <section className='section__container py-6 md:py-12 pb-10 '>
                 <div className='flex flex-col md:flex-row md:gap-8 gap-4'>
                     {/* زر عرض/إخفاء الفلاتر للجوال */}
                     <button
