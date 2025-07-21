@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import img1 from "../../assets/close-up-skin-regeneration-products.jpg";
 import img2 from "../../assets/combination-makeup-textures.jpg";
 import img3 from "../../assets/front-view-perfume-bottle-with-pink-roses.jpg";
-import img4 from "../../assets/close-up-woman-trying-cream-hands.jpg";
+import img4 from "../../assets/Screenshot 2025-07-20 195925.png";
 import img5 from "../../assets/top-view-foundation-advertising.jpg";
 import img6 from "../../assets/high-angle-view-cosmetic-beauty-products-white-backdrop.jpg";
-import img7 from "../../assets/view-circular-arrangement-with-make-up-flowers.jpg";
+import img7 from "../../assets/stack-sweaters-wooden-table.jpg";
 import img8 from "../../assets/composition-with-colorful-cosmetics-white-background.jpg";
 
 const cards = [

@@ -146,7 +146,7 @@ const ShopPage = () => {
             setCurrentPage(pageNumber);
             window.scrollTo({ top: 400, behavior: 'smooth' });
         }
-    };
+    }; 
 
     if (isLoading) return <div className="text-center py-8 text-xl text-pink-600 animate-pulse">جاري التحميل...</div>;
     if (error) return <div className="text-center py-8 text-xl text-red-500">حدث خطأ أثناء تحميل المنتجات</div>;

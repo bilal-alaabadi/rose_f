@@ -5,20 +5,21 @@ import { clearCart } from '../../redux/features/cart/cartSlice';
 const OrderSummary = ({ onClose }) => {
     const dispatch = useDispatch();
     const { products, selectedItems, totalPrice } = useSelector((store) => store.cart);
-    const shippingFee = 2; // سعر الشحن 2 ريال عماني
+    const shippingFee = 2;
 
     const handleClearCart = () => {
-        dispatch(clearCart());
+        if (window.confirm('هل أنت متأكد من تفريغ السلة؟')) {
+            dispatch(clearCart());
+        }
     };
 
     const createWhatsAppMessage = () => {
-        let message = " الطلب\n\n";
+        let message = "الطلب\n\n";
         
         products.forEach((product) => {
             message += ` ${product.name}\n`;
             message += ` الكمية: ${product.quantity}\n`;
             message += `السعر: ر.ع ${product.price.toFixed(2)}\n`;
-            message += `الرابط: http://localhost:5173/shop${product.url || `/product/${product._id}`}\n`;
             message += `----------------\n`;
         });
         
@@ -30,24 +31,40 @@ const OrderSummary = ({ onClose }) => {
         return message;
     };
 
-    const whatsappLink = `https://wa.me/96876904013?text=${encodeURIComponent(createWhatsAppMessage())}`;
+    const whatsappLink = `https://wa.me/96892693710?text=${encodeURIComponent(createWhatsAppMessage())}`;
 
     return (
-        <div className='bg-[#f8d7d0] mt-5 rounded text-base'>
-            <div className='px-6 py-4 space-y-5'>
-                <h2 className='text-xl text-text-dark'>ملخص الطلب</h2>
-                <p className='text-text-dark mt-2'>عدد العناصر: {selectedItems}</p>
-                <p className='font-bold text-lg'>المجموع الكلي: ر.ع {totalPrice.toFixed(2)}</p>
-                <p className='text-text-dark'>سعر الشحن: ر.ع {shippingFee.toFixed(2)}</p>
-                <p className='font-bold text-lg text-primary'>
-                    المجموع النهائي: ر.ع {(totalPrice + shippingFee).toFixed(2)}
-                </p>
-                <div className='px-4 mb-6'>
+        <div className='bg-[#f8d7d0] rounded-lg mx-4 my-2 shadow-md'>
+            <div className='p-4 space-y-4'>
+                <h2 className='text-xl font-bold text-gray-800 text-center'>ملخص الطلب</h2>
+                
+                <div className='grid grid-cols-2 gap-2 text-sm'>
+                    <div className='bg-white p-2 rounded'>
+                        <p className='text-gray-600'>عدد العناصر</p>
+                        <p className='font-semibold'>{selectedItems}</p>
+                    </div>
+                    <div className='bg-white p-2 rounded'>
+                        <p className='text-gray-600'>سعر الشحن</p>
+                        <p className='font-semibold'>ر.ع {shippingFee.toFixed(2)}</p>
+                    </div>
+                    <div className='bg-white p-2 rounded col-span-2'>
+                        <p className='text-gray-600'>المجموع الكلي</p>
+                        <p className='font-bold text-lg'>ر.ع {totalPrice.toFixed(2)}</p>
+                    </div>
+                </div>
+
+                <div className='bg-white p-3 rounded-lg'>
+                    <p className='text-center font-bold text-primary text-lg'>
+                        المجموع النهائي: ر.ع {(totalPrice + shippingFee).toFixed(2)}
+                    </p>
+                </div>
+
+                <div className='flex flex-col space-y-3'>
                     <button
                         onClick={handleClearCart}
-                        className='bg-red-500 px-3 py-1.5 text-white mt-2 rounded-md flex justify-between items-center mb-4'
+                        className='bg-red-500 px-4 py-2 text-white rounded-lg flex items-center justify-center space-x-2 hover:bg-red-600 transition-colors'
                     >
-                        <span className='mr-2'>تفريغ السلة</span>
+                        <span>تفريغ السلة</span>
                         <i className="ri-delete-bin-7-line"></i>
                     </button>
 
@@ -56,10 +73,11 @@ const OrderSummary = ({ onClose }) => {
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={onClose}
+                        className='block'
                     >
-                        <button className='bg-green-600 px-3 py-1.5 text-white mt-2 rounded-md flex justify-between items-center'>
-                            <span className='mr-2'>إتمام الشراء</span>
-                            <i className="ri-bank-card-line"></i>
+                        <button className='bg-green-600 w-full px-4 py-2 text-white rounded-lg flex items-center justify-center space-x-2 hover:bg-green-700 transition-colors'>
+                            <span>إتمام الشراء عبر واتساب</span>
+                            <i className="ri-whatsapp-line"></i>
                         </button>
                     </a>
                 </div>

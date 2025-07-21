@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom'; // أضف useNavigate
+import { Link, useParams } from 'react-router-dom';
 import RatingStars from '../../../components/RatingStars';
-import { useDispatch, useSelector } from 'react-redux'; // أضف useSelector
+import { useDispatch } from 'react-redux';
 import { useFetchProductByIdQuery } from '../../../redux/features/products/productsApi';
 import { addToCart } from '../../../redux/features/cart/cartSlice';
 import ReviewsCard from '../reviews/ReviewsCard';
@@ -9,35 +9,23 @@ import ReviewsCard from '../reviews/ReviewsCard';
 const SingleProduct = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
-    const navigate = useNavigate(); // استخدم useNavigate للتوجيه
     const { data, error, isLoading } = useFetchProductByIdQuery(id);
-
-    // تحقق من حالة المستخدم
-    const { user } = useSelector((state) => state.auth);
 
     const singleProduct = data?.product || {};
     const productReviews = data?.reviews || [];
 
-    // حالة لتتبع الصورة الحالية
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
     const handleAddToCart = (product) => {
-        // إذا لم يكن المستخدم مسجلًا، قم بتوجيهه إلى صفحة التسجيل
-        if (!user) {
-            navigate('/login'); // توجيه إلى صفحة التسجيل
-            return;
-        }
         dispatch(addToCart(product));
     };
 
-    // التبديل إلى الصورة التالية
     const nextImage = () => {
         setCurrentImageIndex((prevIndex) =>
             prevIndex === singleProduct.image.length - 1 ? 0 : prevIndex + 1
         );
     };
 
-    // التبديل إلى الصورة السابقة
     const prevImage = () => {
         setCurrentImageIndex((prevIndex) =>
             prevIndex === 0 ? singleProduct.image.length - 1 : prevIndex - 1
@@ -62,7 +50,6 @@ const SingleProduct = () => {
 
             <section className='section__container mt-8'>
                 <div className='flex flex-col items-center md:flex-row gap-8'>
-                    {/* صورة المنتج */}
                     <div className='md:w-1/2 w-full relative'>
                         {singleProduct.image && singleProduct.image.length > 0 ? (
                             <>
@@ -71,11 +58,10 @@ const SingleProduct = () => {
                                     alt={singleProduct.name}
                                     className='rounded-md w-full h-auto'
                                     onError={(e) => {
-                                        e.target.src = "https://via.placeholder.com/500"; // صورة بديلة في حالة الخطأ
+                                        e.target.src = "https://via.placeholder.com/500";
                                         e.target.alt = "Image not found";
                                     }}
                                 />
-                                {/* أزرار التنقل بين الصور */}
                                 {singleProduct.image.length > 1 && (
                                     <>
                                         <button
@@ -98,7 +84,7 @@ const SingleProduct = () => {
                         )}
                     </div>
 
-                    <div className='md:w-1/2 w-full'>
+                    <div className='md:w-1/2 w-full' dir='rtl'>
                         <h3 className='text-2xl font-semibold mb-4'>{singleProduct.name}</h3>
                         <p className='text-xl text-primary mb-4 space-x-1'>
                             {singleProduct.price} ر.ع
@@ -108,22 +94,10 @@ const SingleProduct = () => {
                         </p>
                         <p className='text-gray-400 mb-4'>{singleProduct.description}</p>
 
-                        {/* معلومات إضافية عن المنتج */}
-                        <div className='flex flex-col space-y-2'>
-                            <p><strong>الفئة:</strong> {singleProduct.category}</p>
-                            {/* <p><strong>اللون:</strong> {singleProduct.color}</p> */}
-                            <div className='flex gap-1 items-center'>
-                                {/* <strong>التقييم: </strong> */}
-                                {/* <RatingStars rating={singleProduct.rating} /> */}
-                            </div>
-                        </div>
-
+                       
                         <button
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                handleAddToCart(singleProduct);
-                            }}
-                            className='mt-6 px-6 py-3 bg-pink-500 text-white rounded-md'
+                            onClick={() => handleAddToCart(singleProduct)}
+                            className='mt-6 px-6 py-3 bg-pink-500 text-white rounded-md hover:bg-pink-600 transition-colors'
                         >
                             إضافة إلى السلة
                         </button>
@@ -131,7 +105,6 @@ const SingleProduct = () => {
                 </div>
             </section>
 
-            {/* عرض التقييمات */}
             <section className='section__container mt-8'>
                 <ReviewsCard productReviews={productReviews} />
             </section>
